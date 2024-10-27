@@ -11,20 +11,17 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { validateEmail } from './utils/formutils';
 
 export function Login(){
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
-    const validateEmail = (email: string): void => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        setIsEmailValid(emailRegex.test(email));
-    };
-
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setEmail(e.target.value);
-        validateEmail(e.target.value);
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+        setIsEmailValid(validateEmail(emailValue));
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
