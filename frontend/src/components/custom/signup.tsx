@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { validateEmail, validatePassword } from './utils/formutils.tsx';
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -34,28 +34,16 @@ export function SignUp() {
         number: false,
     });
 
-    const validateEmail = (email: string): void => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        setIsEmailValid(emailRegex.test(email));
-    };
-
-    const validatePassword = (password: string): void => {
-        setPasswordRequirements({
-            length: password.length >= 8 && password.length <= 16,
-            uppercase: /[A-Z]/.test(password),
-            lowercase: /[a-z]/.test(password),
-            number: /[0-9]/.test(password),
-        });
-    };
-
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setEmail(e.target.value);
-        validateEmail(e.target.value);
+        const emailValue = e.target.value;
+        setEmail(emailValue);
+        setIsEmailValid(validateEmail(emailValue));
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setPassword(e.target.value);
-        validatePassword(e.target.value);
+        const passwordValue = e.target.value;
+        setPassword(passwordValue);
+        setPasswordRequirements(validatePassword(passwordValue));
     };
 
     const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
