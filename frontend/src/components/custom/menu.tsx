@@ -31,7 +31,7 @@ export default function Menu() {
 
             <NavigationMenuItem>
                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Login
+                  <Link to={"/login"}>Login</Link>
                </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
