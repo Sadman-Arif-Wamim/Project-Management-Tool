@@ -19,6 +19,12 @@ export default function Menu() {
 
             <NavigationMenuItem>
                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <Link to={"/dashboard"}>Dashboard</Link>
+               </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   About Us
                </NavigationMenuLink>
             </NavigationMenuItem>

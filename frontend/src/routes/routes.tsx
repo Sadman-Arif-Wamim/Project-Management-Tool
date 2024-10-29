@@ -3,6 +3,7 @@ import LandingPage from "../pages/LandingPage";
 import { SignUp } from "@/components/custom/signup";
 import Home from "@/components/custom/home";
 import { Login } from "@/components/custom/login";
+import { SideBarDrawer } from "@/components/custom/sidebardrawer";
 
 export const router = createBrowserRouter([
    {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
          {
             path: "/login",
             element: <Login />,
+         },
+         {
+            path: "/dashboard",
+            element: <SideBarDrawer />,
          },
       ],
    },
