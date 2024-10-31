@@ -1,15 +1,13 @@
+import { TypingAnimation } from "@/components/ui/typing-animation";
+
 export default function Home() {
    return (
       <div>
-         <h1
-            className={`relative w-[max-content] before:absolute before:inset-0 before:animate-typewriter
-                     before:bg-white
-                     after:absolute after:inset-0 after:w-[0.125em] after:animate-caret after:bg-black
-                     text-3xl m-10 text-center font-bold`}
-         >
-            Your all-in-one solution to plan, execute, and complete projects
-            seamlessly.
-         </h1>
+         <TypingAnimation
+            text="Your all-in-one solution to plan, execute, and complete projects
+            seamlessly."
+            duration={100}
+         />
 
          <hr className="m-10"></hr>
 
