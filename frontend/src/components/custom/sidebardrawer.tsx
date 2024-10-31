@@ -15,14 +15,22 @@ export function SideBarDrawer() {
    const links = [
       {
          label: "Dashboard",
+<<<<<<< HEAD
          href: "/dashboard",
+=======
+         href: "#",
+>>>>>>> a19e3d9f2da3de006d75278b918bc1c042f8db9b
          icon: (
             <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
          ),
       },
       {
          label: "Projects",
+<<<<<<< HEAD
          href: "/projects",
+=======
+         href: "#",
+>>>>>>> a19e3d9f2da3de006d75278b918bc1c042f8db9b
          icon: (
             <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
          ),
