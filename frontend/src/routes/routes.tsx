@@ -4,6 +4,7 @@ import { SignUp } from "@/components/custom/signup";
 import Home from "@/components/custom/home";
 import { Login } from "@/components/custom/login";
 import { SideBarDrawer } from "@/components/custom/sidebardrawer";
+import { ProjectList } from '@/components/custom/projectlist';
 
 export const router = createBrowserRouter([
    {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
          {
             path: "/dashboard",
             element: <SideBarDrawer />,
+         },
+         {
+            path: "/projects",
+            element: <ProjectList/>,
          },
       ],
    },
