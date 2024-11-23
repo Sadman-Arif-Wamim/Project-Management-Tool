@@ -16,25 +16,6 @@ export default function Menu() {
                   <Link to={"/"}>Home</Link>
                </NavigationMenuLink>
             </NavigationMenuItem>
-
-            <NavigationMenuItem>
-               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <Link to={"/dashboard"}>Dashboard</Link>
-               </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  About Us
-               </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Contact
-               </NavigationMenuLink>
-            </NavigationMenuItem>
-
             <NavigationMenuItem>
                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <Link to={"/login"}>Login</Link>
@@ -42,7 +23,7 @@ export default function Menu() {
             </NavigationMenuItem>
             <NavigationMenuItem>
                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <Link to={"/signup"}>Sing up</Link>
+                  <Link to={"/signup"}>Sign up</Link>
                </NavigationMenuLink>
             </NavigationMenuItem>
          </NavigationMenuList>

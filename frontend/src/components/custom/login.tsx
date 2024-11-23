@@ -12,8 +12,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { validateEmail } from './utils/formutils';
+import { useNavigate } from 'react-router-dom';
 
 export function Login(){
+    const navigate = useNavigate();
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
@@ -27,6 +29,10 @@ export function Login(){
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setPassword(e.target.value);
     };
+
+    const handleLoginClick = () => {
+        navigate('/dashboard');
+    }
 
     return (
         <Card className="w-[350px]">
@@ -73,6 +79,7 @@ export function Login(){
                         password == "" ||
                         email == ""
                     }
+                    onClick={handleLoginClick}
                 >
                     Login
                 </Button>
