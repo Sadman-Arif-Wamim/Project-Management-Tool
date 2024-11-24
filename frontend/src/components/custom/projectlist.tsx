@@ -5,6 +5,19 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function ProjectList() {
   const projectList = [
@@ -36,6 +49,46 @@ export function ProjectList() {
   ]
   return (
     <Card className="w-full h-screen">
+      <Sheet>
+        <Card>
+      <SheetTrigger asChild>
+        <Button variant="outline">Create New Project</Button>
+      </SheetTrigger>
+      </Card>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Create New Project</SheetTitle>
+          <SheetDescription>
+            Create a new project here. Click submit to save changes!
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input id="name" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="description" className="text-right">
+              Description
+            </Label>
+            <Input id="description" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="content" className="text-right">
+              Content
+            </Label>
+            <Input id="content" className="col-span-3" />
+          </div>
+        </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
     <div className="flex flex-col items-center space-y-6 p-4">
       {projectList.map((item, index) => (
         <div key={index} className="w-full">
