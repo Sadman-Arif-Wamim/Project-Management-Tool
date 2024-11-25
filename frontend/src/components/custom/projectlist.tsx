@@ -49,11 +49,33 @@ export function ProjectList() {
   ]
   return (
     <Card className="w-full h-screen">
-      <Sheet>
-        <Card>
-      <SheetTrigger asChild>
-        <Button variant="outline">Create New Project</Button>
-      </SheetTrigger>
+      <NewProject />
+      <div className="flex flex-col items-center space-y-6 p-4">
+        {projectList.map((item, index) => (
+          <div key={index} className="w-full">
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-gray-800">{item.name}</CardTitle>
+                <CardDescription className="text-sm text-gray-500">{item.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700">{item.content}</p>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </Card>
+  )
+}
+
+function NewProject() {
+  return (
+    <Sheet>
+      <Card>
+        <SheetTrigger asChild>
+          <Button variant="outline">Create New Project</Button>
+        </SheetTrigger>
       </Card>
       <SheetContent>
         <SheetHeader>
@@ -89,22 +111,6 @@ export function ProjectList() {
         </SheetFooter>
       </SheetContent>
     </Sheet>
-    <div className="flex flex-col items-center space-y-6 p-4">
-      {projectList.map((item, index) => (
-        <div key={index} className="w-full">
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold text-gray-800">{item.name}</CardTitle>
-              <CardDescription className="text-sm text-gray-500">{item.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-700">{item.content}</p>
-            </CardContent>
-          </Card>
-        </div>
-      ))}
-    </div>
-    </Card>
   )
 }
 
