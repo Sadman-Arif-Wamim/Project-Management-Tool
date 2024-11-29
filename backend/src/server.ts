@@ -5,11 +5,6 @@ const port = 3000;
 
 app.use(express.json());
 
-interface ItemRequestBody {
-   name: string;
-   description: string;
-}
-
 let items: { id: number; name: string; description: string }[] = [];
 let idCounter = 1;
 
