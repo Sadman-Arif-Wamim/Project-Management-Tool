@@ -1,8 +1,10 @@
 import express, { Request, Response, Application } from "express";
 
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes';
+import auth from './routes/auth';
 import connectDB from './config/db';
+import passport from 'passport';
+require('./strategies/local');
 
 dotenv.config();
 
@@ -11,8 +13,11 @@ const app: Application = express();
 connectDB();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/auth', authRoutes);
+app.use(passport.initialize());
+
+app.use('/api/auth', auth);
 
 const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 
