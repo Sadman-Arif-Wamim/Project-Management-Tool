@@ -1,9 +1,20 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, Application } from "express";
 
-const app = express();
-const port = 3000;
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes';
+import connectDB from './config/db';
+
+dotenv.config();
+
+const app: Application = express();
+
+connectDB();
 
 app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+
+const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 
 let items: { id: number; name: string; description: string }[] = [];
 let idCounter = 1;
@@ -69,6 +80,6 @@ app.delete("/items/:id", (req: Request, res: Response) => {
    res.status(204).send();
 });
 
-app.listen(port, () => {
-   console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+   console.log(`Server running at http://localhost:${PORT}`);
 });
