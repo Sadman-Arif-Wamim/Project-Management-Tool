@@ -1,12 +1,15 @@
 import express, { Request, Response, Application } from "express";
+import passport from 'passport';
 
 import dotenv from 'dotenv';
-import auth from './routes/auth';
-import connectDB from './config/db';
-import passport from 'passport';
-require('./strategies/local');
-
 dotenv.config();
+
+import authRoutes from './routes/authRoutes';
+import userRoutes from './routes/userRoutes';
+import connectDB from './config/db';
+
+require('./strategies/local');
+require('./strategies/jwt');
 
 const app: Application = express();
 
@@ -17,7 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
 
-app.use('/api/auth', auth);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 

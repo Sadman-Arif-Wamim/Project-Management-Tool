@@ -7,6 +7,7 @@ interface IUser extends Document {
   email: string;
   googleId?: string;
   date: Date;
+  role: string,
   comparePassword(password: string): Promise<boolean>;
 }
 
@@ -16,6 +17,7 @@ const UserSchema: Schema<IUser> = new mongoose.Schema(
     password: { type: String, required: true },
     email: { type: String, unique: true },
     googleId: { type: String },
+    role: { type: String },
     date: { type: Date, default: Date.now }
   }
 );

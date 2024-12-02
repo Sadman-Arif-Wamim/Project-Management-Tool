@@ -7,7 +7,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const user = req.user as any;
 
-    const payload = { id: user.id, username: user.username };
+    const payload = { id: user.id, username: user.username, role: user.role };
     const token = jwt.sign(payload, process.env.JWT_SECRET as string, { expiresIn: '1h' });
 
     return res.json({ token });
