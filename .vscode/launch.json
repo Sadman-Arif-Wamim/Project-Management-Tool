@@ -1,0 +1,16 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Debug Express Server",
+			"program": "${workspaceFolder}/backend/server.ts", // or your main server file
+			"preLaunchTask": "tsc: build - tsconfig.json",
+			"outFiles": ["${workspaceFolder}/dist/**/*.ts"],
+			"sourceMaps": true,
+			"restart": true,
+			"console": "integratedTerminal"
+		}
+	]
+}
