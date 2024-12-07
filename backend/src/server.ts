@@ -6,6 +6,8 @@ dotenv.config();
 
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
+import projectRoutes from './routes/projectRoutes';
+import taskRoutes from './routes/taskRoutes';
 import connectDB from './config/db';
 
 require('./strategies/local');
@@ -22,6 +24,8 @@ app.use(passport.initialize());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/project', projectRoutes);
+app.use('/api/task', taskRoutes);
 
 const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 
