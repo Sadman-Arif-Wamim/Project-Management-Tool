@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from './utils/apiclient';
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -16,9 +16,9 @@ import { useNavigate } from 'react-router-dom';
 
 interface LoginResponse {
     token: string;
-  }
+}
 
-export function Login(){
+export function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -35,16 +35,18 @@ export function Login(){
     };
 
     const handleLoginClick = async (e: React.FormEvent): Promise<void> => {
-        console.log(e);
-        try{
-            const response = await axios.post<LoginResponse>("http://localhost:5000/api/auth/login", {
+
+        try {
+            const response = await axiosInstance.post<LoginResponse>("/auth/login", {
                 email,
                 password
             });
+
             localStorage.setItem("token", response.data.token);
             navigate('/dashboard');
+
         } catch (err) {
-            console.log("Login Failed", err)
+            console.log("Login Failed", err);
         }
     }
 

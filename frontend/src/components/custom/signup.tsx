@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { validateEmail, validatePassword } from './utils/formutils.tsx';
 import { Button } from "@/components/ui/button"
 import {
@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import axiosInstance from './utils/apiclient.tsx';
 
 type PasswordRequirements = {
     length: boolean;
@@ -20,9 +21,14 @@ type PasswordRequirements = {
     number: boolean;
 };
 
+interface SignUpResponse {
+    msg: string;
+}
+
 
 export function SignUp() {
 
+    const [username, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -50,6 +56,24 @@ export function SignUp() {
         setConfirmPassword(e.target.value);
     };
 
+    const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const nameValue = e.target.value;
+        setName(nameValue);
+    }
+
+    const handleSignUpClick = async (e: React.FormEvent): Promise<void> => {
+        try{
+            const response = await axiosInstance.post<SignUpResponse>("/auth/register", {
+                email,
+                username, 
+                password
+            });      
+            console.log(response.data.msg);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     const isPasswordMatching = password === confirmPassword;
 
     return (
@@ -63,7 +87,11 @@ export function SignUp() {
                     <div className="grid w-full items-center gap-4">
                         <div className="flex flex-col space-y-1.5 mb-1">
                             <Label htmlFor="name">Name</Label>
-                            <Input id="name" placeholder="Your Name" />
+                            <Input id="name" 
+                            placeholder="Your Name" 
+                            value = {username}
+                            onChange={handleNameInput}
+                            />
                         </div>
                     </div>
                     <div className="grid w-full items-center gap-4">
@@ -161,6 +189,7 @@ export function SignUp() {
                         !isPasswordMatching ||
                         !Object.values(passwordRequirements).every(Boolean)
                     }
+                    onClick={handleSignUpClick}
                 >
                     Sign Up
                 </Button>
