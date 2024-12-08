@@ -1,5 +1,6 @@
 import express, { Request, Response, Application } from "express";
 import passport from 'passport';
+import cors from 'cors';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -16,6 +17,14 @@ require('./strategies/jwt');
 const app: Application = express();
 
 connectDB();
+
+app.use(
+   cors({
+     origin: 'http://localhost:5173', 
+     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+     credentials: true, 
+   })
+ );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

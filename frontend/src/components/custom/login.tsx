@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import axios from 'axios';
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -13,6 +13,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { validateEmail } from './utils/formutils';
 import { useNavigate } from 'react-router-dom';
+
+interface LoginResponse {
+    token: string;
+  }
 
 export function Login(){
     const navigate = useNavigate();
@@ -30,8 +34,18 @@ export function Login(){
         setPassword(e.target.value);
     };
 
-    const handleLoginClick = () => {
-        navigate('/dashboard');
+    const handleLoginClick = async (e: React.FormEvent): Promise<void> => {
+        console.log(e);
+        try{
+            const response = await axios.post<LoginResponse>("http://localhost:5000/api/auth/login", {
+                email,
+                password
+            });
+            localStorage.setItem("token", response.data.token);
+            navigate('/dashboard');
+        } catch (err) {
+            console.log("Login Failed", err)
+        }
     }
 
     return (
@@ -80,6 +94,7 @@ export function Login(){
                         email == ""
                     }
                     onClick={handleLoginClick}
+                    type="button"
                 >
                     Login
                 </Button>

@@ -5,10 +5,10 @@ import bcrypt from 'bcrypt';
 
 passport.use(
     new LocalStrategy({
-        usernameField: 'username',
-    }, async (username: string, password: string, done: any) => {
+        usernameField: 'email',
+    }, async (email: string, password: string, done: any) => {
         try {
-            const user = await Users.findOne({ username }).select('+password');
+            const user = await Users.findOne({ email }).select('+password');
             if (!user) return done(null, false, { message: 'User not found' });
 
             const isMatch = await bcrypt.compare(password, user.password);
